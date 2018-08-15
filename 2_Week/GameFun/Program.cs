@@ -9,11 +9,11 @@ namespace GameFun
         {
             IDamageable[] targets = new IDamageable[]
             {   
-                new Unit(), new Unit(), new Building(), new Building()
+                new Melee(), new Melee(), new Building(), new Building()
             };
 
-            Unit thingOne = new Unit();
-            Unit thingTwo = new Unit();
+            Melee thingOne = new Melee();
+            Melee thingTwo = new Melee();
 
             thingOne.Attack(thingTwo);
             thingOne.Attack(thingTwo, 100);
