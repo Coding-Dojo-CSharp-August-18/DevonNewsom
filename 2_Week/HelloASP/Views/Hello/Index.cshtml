@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    @{
+        string[] words = new string[]
+        {
+            "other", "else", "haha"
+        };
+    }
+    <h1>Hello from the VIEW!</h1>
+    <a href="clickme">Click Me to redirect!</a>
+
+    @foreach(string word in words)
+    {
+        <a href="/somewhere/@word">@word's are here</a>
+    }
+</body>
+</html>
