@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="~/site.css">
+    <title>ASP DATA FUN!!</title>
+</head>
+<body>
+    <h1>Index VIEW!! YAY</h1>
+    <h2>My Items!</h2>
+    <h3>ViewBag: @ViewBag.Items</h3>
+    
+    @foreach(var item in ViewBag.Items)
+    {
+        if(item == "Apple")
+        {
+            <h2>@item's is a thing</h2>
+        }
+        else
+        {
+            <p>@item's here!</p>
+        }
+    }
+    <hr>
+    <h2>Add a fruit!</h2>
+    <form action="/submit" method="post">
+        <input type="text" name="Fruit" placeholder="Fruit Name">
+        <input type="number" name="NumThings" placeholder="Number of things">
+        <label for="IsCool">Is This Cool?</label>
+        <input type="checkbox" name="IsCool">
+        <hr>
+        <label for="MaritalStatus">Marital Status:</label>
+        <label for="married">Married</label>
+        <input type="radio" name="MaritalStatus" value="married" checked>
+        <label for="single">Single</label>
+        <input type="radio" name="MaritalStatus" value="single" checked>
+        <hr>
+        <label for="Item">Choose an Item:</label>
+        <select name="Item">
+            @foreach(var item in ViewBag.Items)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
