@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+@model ViewModels.IndexViewModel
+
+<h1>@ViewBag.Message</h1>
+<hr>
+<h2>Name: @Model.TheFruit.Name</h2>
+<h2>Calories: @Model.TheFruit.Calories</h2>
+</ul>
+<hr>
+<h3>Here are some other fruit:</h3>
+@foreach(var f in Model.MyFruits)
+{
+    <p>@f.Name</p>
+}
+<hr>
+<h2>Add New Fruit!</h2>
+<form action="/create" method="post">
+    <input type="text" name="Name" placeholder="Add a Name">
+    <input type="number" name="Calories" placeholder="Calories">
+    <input type="submit" value="Add Fruit">
+</form>
+</body>

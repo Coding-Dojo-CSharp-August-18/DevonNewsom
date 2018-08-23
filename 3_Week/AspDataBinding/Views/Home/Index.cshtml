@@ -8,11 +8,14 @@
     <title>ASP DATA FUN!!</title>
 </head>
 <body>
+    @{
+        var items = (string[])ViewData["Items"].ToList();
+    }
     <h1>Index VIEW!! YAY</h1>
     <h2>My Items!</h2>
     <h3>ViewBag: @ViewBag.Items</h3>
     
-    @foreach(var item in ViewBag.Items)
+    @foreach(var item in items)
     {
         if(item == "Apple")
         {
