@@ -155,3 +155,5 @@ _[Ss]cripts
 appsettings.json
     
 *~
+
+*.io
