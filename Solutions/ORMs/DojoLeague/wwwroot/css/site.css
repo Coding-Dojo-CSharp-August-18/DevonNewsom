@@ -1,0 +1,9 @@
+﻿.ninja-index-section{
+    display: inline-block;
+    width: 35%;
+    vertical-align: top;
+}
+.ninja-index-section:last-child{
+    border-left: solid 1px black;
+    padding-left: 20px;
+}

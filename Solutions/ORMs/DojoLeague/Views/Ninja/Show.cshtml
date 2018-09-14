@@ -1,0 +1,18 @@
+@model DojoLeague.Models.Ninja
+<h1>Name: @Model.name</h1>
+<h4>Ninja Level: @Model.level</h4>
+@if(Model.description != null)
+{
+    <h4>Description: @Model.description</h4>
+}
+@{
+    if(Model.Dojo != null)
+    {
+        <h4>Current Dojo: <a href="/dojo/@Model.Dojo.dojo_id">@Model.Dojo.name</a></h4>
+
+    }
+    else
+    {
+        <h4>Current Dojo: ROGUE</h4>
+    }
+}

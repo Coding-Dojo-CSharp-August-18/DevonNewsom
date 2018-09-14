@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model DojoLeague.Models.DojoIndex
+<h2>All Dojos</h2>
+<table class="table table-hover ninja-index-section">
+    <thead>
+        <tr>
+            <th>Dojo Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var dojo in Model.Dojos)
+    {
+        <tr>
+        @if(dojo.name != "Rogue")
+        {
+            <td><a href="/dojo/@dojo.dojo_id">@dojo.name</a></td>
+        }
+        </tr>
+    }
+    </tbody>
+</table>
+<form class="ninja-index-section" method="post" asp-controller="Dojo" asp-action="Create">
+    <h2>Register a Dojo</h2>
+    <div class="form-group">
+        <span asp-validation-for="NewDojo.name"></span>
+        <label asp-for="NewDojo.name"></label>
+        <input class="form-control" asp-for="NewDojo.name">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="NewDojo.location"></span>
+        <label asp-for="NewDojo.location"></label>
+        <input class="form-control" asp-for="NewDojo.location">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="NewDojo.description"></span>
+        <label asp-for="NewDojo.description"></label>
+        <textarea class="form-control" asp-for="NewDojo.description"></textarea>
+    </div>    
+    <input type="submit" value="Add">
+</form>

@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model DojoLeague.Models.NinjaIndex
+<h2>Registered Ninjas</h2>
+<table class="table table-hover ninja-index-section">
+    <thead>
+        <tr>
+            <th>Ninja Name</th>
+            <th>Home Dojo</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var ninja in Model.Ninjas)
+    {
+        <tr>
+            <td><a href="@ninja.ninja_id">@ninja.name</a></td>
+        @{
+            if(@ninja.Dojo != null)
+            {
+                <td><a href="/dojo/@ninja.Dojo.dojo_id">@ninja.Dojo.name</a></td>
+            }
+            else
+            {
+                <td>Rogue</td>
+            }
+        }
+        </tr>
+    }
+    </tbody>
+</table>
+<form class="ninja-index-section" method="post" asp-controller="Ninja" asp-action="Create">
+    <h2>Register a Ninja</h2>
+    <div class="form-group">
+        <span asp-validation-for="NewNinja.name"></span>
+        <label asp-for="NewNinja.name"></label>
+        <input class="form-control" asp-for="NewNinja.name">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="NewNinja.level"></span>
+        <label asp-for="NewNinja.level"></label>
+        <input class="form-control" asp-for="NewNinja.level">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="NewNinja.dojo_id"></span>
+        <label asp-for="NewNinja.dojo_id"></label>
+        <select class="form-control" asp-for="NewNinja.dojo_id">
+            <option value="">ROGUE</option>
+            @foreach(var dojo in Model.Dojos)
+            {
+                <option value="@dojo.dojo_id">@dojo.name</option>
+            }
+            
+        </select>
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="NewNinja.description"></span>
+        <label asp-for="NewNinja.description"></label>
+        <textarea class="form-control" asp-for="NewNinja.description"></textarea>
+    </div>    
+    <input type="submit" value="Add">
+</form>

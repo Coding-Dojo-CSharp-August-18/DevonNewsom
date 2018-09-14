@@ -1,0 +1,65 @@
+@model DojoLeague.Models.ShowDojo
+<h2>@Model.Dojo.name</h2>
+<h4>Dojo Location - @Model.Dojo.location</h4>
+@if(@Model.Dojo.description != null)
+{
+    <h4>Information - @Model.Dojo.description</h4>
+}
+<div class="ninja-index-section">
+<h3>Current Members</h3>
+    @{
+        if(Model.Dojo.Members.Count < 1)
+        {
+            <h3>No Ninjas Here</h3>
+        }
+        else
+        {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Ninja</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var ninja in Model.Dojo.Members)
+                    {
+                        <tr>
+                            <td><a href="/@ninja.ninja_id">@ninja.name</a></td>
+                            <td><a href="/banish/@ninja.ninja_id/@Model.Dojo.dojo_id">Banish!</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>
+<div class="ninja-index-section">
+<h3>Rogue Ninjas</h3>
+    @{
+        if(Model.RogueNinjas.Count < 1)
+        {
+            <h3>No Ninjas Here</h3>
+        }
+        else
+        {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Ninja</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var ninja in Model.RogueNinjas)
+                    {
+                        <tr>
+                            <td><a href="/@ninja.ninja_id">@ninja.name</a></td>
+                            <td><a href="/recruit/@ninja.ninja_id/@Model.Dojo.dojo_id">Recruit!</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>
