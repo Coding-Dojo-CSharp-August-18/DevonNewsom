@@ -30,7 +30,7 @@ namespace DojoLeague.Factories
             using(IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                string query = "INSERT INTO dojos (name, location, info) VALUES (@name, @location, @info)";
+                string query = "INSERT INTO dojos (name, location, description) VALUES (@name, @location, @description)";
                 dbConnection.Execute(query, dojo);
             }
         }

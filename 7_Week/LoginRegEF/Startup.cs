@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DojoLeague.Factories;
+using LoginRegEF.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DojoLeague
+namespace LoginRegEF
 {
     public class Startup
     {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        public IConfiguration Configuration;
+        
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
-            services.AddScoped<NinjaFactory>();
-            services.AddScoped<DojoFactory>();
+            services.AddDbContext<MyContext>(options => options.UseMySQL(Configuration["DBInfo:ConnectionString"]));
+            services.AddSession();
             services.AddMvc();
         }
 
@@ -35,9 +36,8 @@ namespace DojoLeague
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc();
         }
     }

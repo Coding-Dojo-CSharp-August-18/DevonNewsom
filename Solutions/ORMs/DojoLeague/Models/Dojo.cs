@@ -5,7 +5,6 @@ namespace DojoLeague.Models
 {
     public class Dojo
     {
-        [Key]
         public int dojo_id {get;set;}
         [Display(Name="Dojo Name")]
         [Required]
