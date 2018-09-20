@@ -1,0 +1,18 @@
+<h1>Blog Dashboard</h1>
+<a href="/blogs/new">Add new Blog post</a>
+<hr>
+<h3>All Blogs:</h3>
+@foreach(var blog in ViewBag.Blogs)
+{
+    <div class="blog">
+        <h4>@blog.title</h4>
+        <p>@blog.content</p>
+        <p>By - <a href="/@blog.Author.user_id">@blog.Author.first_name @blog.Author.last_name</a></p>
+        @{
+            if(ViewBag.LoggedInUser == blog.Author.user_id)
+            {
+                <a href="/blogs/@blog.blog_id/delete">DELETE</a>
+            }
+        }
+    </div>
+}
