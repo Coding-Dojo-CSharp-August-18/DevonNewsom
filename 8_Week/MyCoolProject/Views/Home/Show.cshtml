@@ -1,0 +1,18 @@
+@model MyUser
+<h2>Profile for User #@Model.user_id</h2>
+<hr>
+<h3>Blog Posts by @Model.first_name @Model.last_name</h3>
+@{
+    if(Model.Blogs.Count() > 0)
+    {
+        foreach(var blog in Model.Blogs)
+        {
+            <p>@blog.title</p>
+        }
+
+    }
+    else
+    {
+        <h1>No blogs here!</h1>
+    }
+}

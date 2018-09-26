@@ -1,0 +1,16 @@
+@model Blog
+<h1>Details for Blog #@Model.blog_id</h1>
+<hr>
+<h2>@Model.title</h2>
+<p>@Model.content</p>
+<hr>
+<h4>All the Likers:</h4>
+@foreach(var vote in Model.Votes.Where(v => v.is_upvote))
+{
+    <p>@vote.Voter.first_name @vote.Voter.last_name</p>
+}
+<h4>All the Haters:</h4>
+@foreach(var vote in Model.Votes.Where(v => !v.is_upvote))
+{
+    <p>@vote.Voter.first_name @vote.Voter.last_name</p>
+}
