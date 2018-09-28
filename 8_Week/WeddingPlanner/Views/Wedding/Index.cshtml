@@ -1,0 +1,36 @@
+@model IEnumerable<Wedding>
+<h1>Wedding Dashboard</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Wedding</th>
+            <th>Date</th>
+            <th>Guest Count</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var wedding in Model)
+    {
+        <tr>
+            <td>@wedding.Bride @wedding.Groom</td>
+            <td>@wedding.Date</td>
+            <td>@wedding.Responses.Count()</td>
+        @{
+            if(wedding.UserId == ViewBag.UserId)
+            {
+                <td><a href="">DELETE</a></td>
+            }
+            else if(wedding.Responses.Any(r => r.UserId == ViewBag.UserId))
+            {
+                <td><a href="">UN-RSVP</a></td>
+            }
+            else
+            {
+                <td><a href="">RSVP</a></td>
+            }
+        }
+        </tr>
+    }
+    </tbody>
+</table>
